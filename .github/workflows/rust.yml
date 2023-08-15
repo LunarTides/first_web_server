@@ -10,12 +10,25 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-
+  api:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+    - name: Change directory
+      run: cd api
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+  
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Change directory
+      run: cd frontend
     - name: Build
       run: cargo build --verbose
     - name: Run tests
